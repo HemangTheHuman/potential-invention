@@ -32,10 +32,28 @@ def draw_boxes(page_img, words, show_text=True, line_width=2):
     img = page_img.copy()
     draw = ImageDraw.Draw(img)
 
+    import os
+    import urllib.request
+    
+    font_path = "NotoSansDevanagari-Regular.ttf"
+    font_url = "https://raw.githubusercontent.com/google/fonts/main/ofl/notosansdevanagari/NotoSansDevanagari-Regular.ttf"
+    
+    if not os.path.exists(font_path):
+        print("Downloading Devanagari font...")
+        try:
+            urllib.request.urlretrieve(font_url, font_path)
+            print("Font downloaded successfully.")
+        except Exception as e:
+            print(f"Failed to download font: {e}")
+            
     try:
-        font = ImageFont.load_default()
+        font = ImageFont.truetype(font_path, 16)
     except Exception:
-        font = None
+        print("Warning: Could not load Devanagari font, falling back to default.")
+        try:
+            font = ImageFont.load_default()
+        except Exception:
+            font = None
 
     for word in words:
         bbox = word.get("bbox_pixels")
@@ -63,7 +81,7 @@ def main():
     parser.add_argument("--pdf", default="/home/azureuser/kaithi/OCD/data/test.pdf", help="Path to input PDF")
     parser.add_argument("--json", default="/home/azureuser/kaithi/OCD/data/words.json", help="Path to OCR JSON from previous script")
     parser.add_argument("--page", default=0,type=int, required=True, help="0-based page index")
-    parser.add_argument("--output", default="/home/azureuser/kaithi/OCD/data/page_boxes.png", help="Output image path")
+    parser.add_argument("--output", default="/home/azureuser/kaithi/OCD/data/hindi_boxes.png", help="Output image path")
     parser.add_argument("--hide-text", action="store_true", help="Do not draw recognized text labels")
     args = parser.parse_args()
 
