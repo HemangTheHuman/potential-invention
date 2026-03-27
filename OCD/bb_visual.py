@@ -81,7 +81,7 @@ def main():
     parser.add_argument("--pdf", default="/home/azureuser/kaithi/OCD/data/test.pdf", help="Path to input PDF")
     parser.add_argument("--json", default="/home/azureuser/kaithi/OCD/data/words.json", help="Path to OCR JSON from previous script")
     parser.add_argument("--page", default=0,type=int, required=True, help="0-based page index")
-    parser.add_argument("--output", default="/home/azureuser/kaithi/OCD/data/hindi_boxes.png", help="Output image path")
+    parser.add_argument("--output", default="/home/azureuser/kaithi/OCD/odata/hindi_boxes.png", help="Output image path")
     parser.add_argument("--hide-text", action="store_true", help="Do not draw recognized text labels")
     args = parser.parse_args()
 

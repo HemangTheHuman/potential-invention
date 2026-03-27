@@ -104,7 +104,6 @@ def main():
         raise FileNotFoundError(f"Input PDF not found: {input_pdf}")
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print(f"Using device: {device}")
 
     model = ocr_predictor(
         det_arch=args.det_arch,
@@ -113,6 +112,7 @@ def main():
         assume_straight_pages=args.straight,
         preserve_aspect_ratio=True,
     ).to(device)
+    print(f"Using device: {device}")
 
     # Read all PDF pages
     doc = DocumentFile.from_pdf(str(input_pdf))
