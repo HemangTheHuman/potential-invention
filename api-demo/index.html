@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multilipi API Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-animation"></div>
+    <div class="container">
+        <header>
+            <h1>API Capabilities Demo</h1>
+            <p>Experience real-time transliteration and translation.</p>
+        </header>
+
+        <main>
+            <!-- Part 1: Any Script to Kaithi -->
+            <section class="card transliteration-card">
+                <div class="card-header">
+                    <h2>Auto-Detect & Transliterate to Kaithi</h2>
+                    <div class="status-indicator" id="part1-status"></div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col">
+                        <label for="part1-input-text">Input Text (Any Script)</label>
+                        <textarea id="part1-input-text" placeholder="Type or paste text here..."></textarea>
+                        <div style="margin-top: 5px; font-size: 0.85em; color: #a1a1aa;">
+                            Detected Script: <strong id="detected-script-label" style="color: #60a5fa;">None</strong>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label for="part1-kaithi-output">Kaithi Output</label>
+                        <textarea id="part1-kaithi-output" placeholder="Kaithi transliteration will appear here..."
+                            readonly></textarea>
+                        <button id="copy-to-processor-btn" class="btn secondary-btn"
+                            style="margin-top: 10px; width: 100%;">
+                            Copy to Processor ↓
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Part 2: Kaithi Processor -->
+            <section class="card translation-card">
+                <div class="card-header">
+                    <h2>Kaithi Processor</h2>
+                </div>
+
+                <div class="form-group">
+                    <label for="kaithi-input-text">Kaithi Input</label>
+                    <textarea id="kaithi-input-text" class="large-textarea" style="height: 100px;"
+                        placeholder="Paste Kaithi text here..."></textarea>
+                </div>
+
+                <!-- Bhashini Options -->
+                <div id="bhashini-options" class="processor-options">
+                    <div class="form-group row align-end">
+                        <div class="col">
+                            <label for="bhashini-target-lang">Target Language</label>
+                            <select id="bhashini-target-lang">
+                                <option value="hi">Hindi (hi)</option>
+                                <option value="en">English (en)</option>
+                            </select>
+                        </div>
+                        <div class="col translate-btn-col">
+                            <button id="bhashini-process-btn" class="btn primary-btn">
+                                <span class="btn-text">Translate</span>
+                                <span class="loader" id="bhashini-process-loader"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="status-indicator" id="bhashini-status" style="margin-bottom: 15px; text-align: right;">
+                    </div>
+
+                    <!-- Intermediate Transliterated Output Display for Bhashini -->
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label style="font-size: 0.85em; color: #a1a1aa;">Intermediate Transliteration
+                            (Devanagari)</label>
+                        <textarea id="bhashini-transliterated-text"
+                            style="height: 60px; font-size: 0.9em; padding: 8px;" readonly
+                            placeholder="Transliteration appears here..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 20px;">
+                    <label for="final-translated-text" style="color: #60a5fa; font-weight: 600;">Final Output</label>
+                    <textarea id="final-translated-text" class="large-textarea" style="border-color: #3b82f6;"
+                        placeholder="Result will appear here..." readonly></textarea>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Powered by Multilipi &amp; AI</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

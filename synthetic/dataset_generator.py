@@ -92,7 +92,7 @@ def transliterate_english_to_kaithi(text: str) -> str:
     src='HK'
     tgt='Kaithi'
     txt=text.lower()
-    res=transliterate.process(src, tgt, txt, nativize =False, pre_options = [], post_options = [])
+    res=transliterate.process(src, tgt, txt, nativize =False, pre_options = ["retain_spaces"], post_options = ["use_full_stops"])
     return res
 
 
